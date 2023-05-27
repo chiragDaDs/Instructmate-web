@@ -23,16 +23,14 @@ import {
   IconSwitchHorizontal,
   IconChevronDown,
 } from "@tabler/icons-react";
-import { MantineLogo } from "@mantine/ds";
-
 const useStyles = createStyles((theme) => ({
   header: {
     paddingTop: theme.spacing.sm,
-    // backgroundColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     borderBottom: `${rem(1)} solid ${
-      theme.fn.variant({ variant: "filled", color: theme.primaryColor })
-        .background
+      theme.colorScheme === 'dark' ? 'transparent' : theme.colors.gray[2]
     }`,
+    marginBottom: rem(120),
   },
 
   mainSection: {
@@ -40,76 +38,52 @@ const useStyles = createStyles((theme) => ({
   },
 
   user: {
-    color: theme.white,
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
     padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
-    borderRadius: theme.radius.lg,
-    transition: "background-color 100ms ease",
+    borderRadius: theme.radius.sm,
+    transition: 'background-color 100ms ease',
 
-    "&:hover": {
-      backgroundColor: theme.fn.lighten(
-        theme.fn.variant({ variant: "filled", color: theme.primaryColor })
-          .background!,
-        0.1
-      ),
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
     },
 
-    [theme.fn.smallerThan("xs")]: {
-      display: "none",
+    [theme.fn.smallerThan('xs')]: {
+      display: 'none',
     },
   },
 
   burger: {
-    [theme.fn.largerThan("xs")]: {
-      display: "none",
+    [theme.fn.largerThan('xs')]: {
+      display: 'none',
     },
   },
 
   userActive: {
-    backgroundColor: theme.fn.lighten(
-      theme.fn.variant({ variant: "filled", color: theme.primaryColor })
-        .background!,
-      0.1
-    ),
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
   },
 
   tabs: {
-    [theme.fn.smallerThan("sm")]: {
-      display: "none",
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
     },
   },
 
   tabsList: {
-    borderBottom: "0 !important",
+    borderBottom: '0 !important',
   },
 
   tab: {
     fontWeight: 500,
     height: rem(38),
-    color: theme.white,
-    backgroundColor: "transparent",
-    borderColor: theme.fn.variant({
-      variant: "filled",
-      color: theme.primaryColor,
-    }).background,
+    backgroundColor: 'transparent',
 
-    "&:hover": {
-      backgroundColor: theme.fn.lighten(
-        theme.fn.variant({ variant: "filled", color: theme.primaryColor })
-          .background!,
-        0.1
-      ),
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
     },
 
-    "&[data-active]": {
-      backgroundColor: theme.fn.lighten(
-        theme.fn.variant({ variant: "filled", color: theme.primaryColor })
-          .background!,
-        0.1
-      ),
-      borderColor: theme.fn.variant({
-        variant: "filled",
-        color: theme.primaryColor,
-      }).background,
+    '&[data-active]': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+      borderColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[2],
     },
   },
 }));
@@ -134,11 +108,11 @@ export function UserHeader({ user, tabs }: HeaderTabsProps) {
   ));
 
   return (
-    <header className={`${classes.header} bg-orange-header`}>
+    <header className={`${classes.header} bg-header-background`}>
       <Container className={classes.mainSection}>
         <Group position="apart">
           <img
-            src="/logos/center_full.png"
+            src="/logos/side_full.png"
             className=""
             alt={""}
             height={logoHeight}

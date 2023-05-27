@@ -13,7 +13,8 @@ export default {
         'orange-safety':"#ff6700",
         'orange-salmon' : "#ffa07a",
         'orange-tangerine':"#ffa089",
-        'orange-header':"#FF5F15" 
+        'orange-header':"#FF5F15",
+        'header-background':"#FFF5EE"
       },
     },
   },
