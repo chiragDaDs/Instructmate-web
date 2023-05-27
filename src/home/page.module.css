@@ -1,0 +1,19 @@
+.head{
+    display: flex;
+    justify-content: center;
+    background-color:#C8463F;
+    /* opacity: .3; */
+}
+.hero{
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    color: white;
+    font-family: 'Lucida Console', Monaco, monospace;
+    font-size: 60px;
+    background: rgb(200,70,63);
+/* background: linear-gradient(180deg, rgba(200,70,63,1) 40%, rgba(255,255,255,1) 94%); */
+}
+.kids_image{
+    margin-top: 100px;
+}
