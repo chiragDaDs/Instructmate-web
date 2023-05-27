@@ -77,9 +77,7 @@ Please ensure that your code adheres to the project's coding standards and conve
 Instructmate-web is licensed under the [MIT License](LICENSE). Feel free to modify and distribute the application according to the terms of the license.
 
 ```
-Copyright [year] [author
-
-]
+Copyright 2023 Chirag Chatwani
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
