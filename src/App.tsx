@@ -161,7 +161,7 @@ function App() {
     <UserHeader user={Headerdata.user} tabs={Headerdata.tabs}></UserHeader>
     <br/><br/>
     <br/><br/>
-    {/* <CourseCardGrid courses={courseList}></CourseCardGrid> */}
+    <CourseCardGrid courses={courseList}></CourseCardGrid>
     </>
   );
 }
