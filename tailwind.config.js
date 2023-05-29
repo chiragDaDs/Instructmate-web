@@ -14,7 +14,7 @@ export default {
         'orange-salmon' : "#ffa07a",
         'orange-tangerine':"#ffa089",
         'orange-header':"#FF5F15",
-        'header-background':"#FFF5EE"
+        'header-background':"#FDF2EF"
       },
     },
   },
