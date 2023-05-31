@@ -23,70 +23,32 @@ import {
   IconSwitchHorizontal,
   IconChevronDown,
 } from "@tabler/icons-react";
+import {
+  Files,
+  FilePlus,
+  CheckupList,
+  CalendarEvent,
+  Chalkboard,
+  Bell
+} from "tabler-icons-react";
 const useStyles = createStyles((theme) => ({
-  header: {
-    paddingTop: theme.spacing.sm,
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    borderBottom: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? 'transparent' : theme.colors.gray[2]
-    }`,
-    marginBottom: rem(120),
-  },
-
-  mainSection: {
-    paddingBottom: theme.spacing.sm,
-  },
-
-  user: {
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
-    padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
-    borderRadius: theme.radius.sm,
-    transition: 'background-color 100ms ease',
-
-    '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
-    },
-
-    [theme.fn.smallerThan('xs')]: {
-      display: 'none',
-    },
-  },
-
-  burger: {
-    [theme.fn.largerThan('xs')]: {
-      display: 'none',
-    },
-  },
-
-  userActive: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
-  },
-
-  tabs: {
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  tabsList: {
-    borderBottom: '0 !important',
-  },
-
   tab: {
     fontWeight: 500,
-    height: rem(38),
+    // height: rem(38),
     backgroundColor: 'transparent',
-
-    '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+    marginRight: "6px",
+    "&:hover": {
+      transform: "scale(1.05)",
     },
-
-    '&[data-active]': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-      borderColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[2],
-    },
-  },
+    "&[data-active]": {
+      borderColor: "#ff4500",
+      color: "#ff4500",
+      borderTopLeftRadius: "18px",
+      borderTopRightRadius: "18px",
+    }
+  }
 }));
+
 
 interface HeaderTabsProps {
   user: { name: string; image: string };
@@ -98,34 +60,71 @@ export function UserHeader({ user, tabs }: HeaderTabsProps) {
   const [opened, { toggle }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState(false);
   const logoAspectRatio = 2.36;
-  const kidsImageAspectRatio = 1.076;
-  const logoHeight = 65;
+  const logoHeight = 95;
 
   const items = tabs.map((tab) => (
-    <Tabs.Tab value={tab} key={tab}>
+    <Tabs.Tab className="" value={tab} key={tab}>
       {tab}
     </Tabs.Tab>
   ));
 
   return (
     <header className={`${classes.header} bg-header-background`}>
-      <Container className={classes.mainSection}>
-        <Group position="apart">
+     
+      {/* <Container> */}
+      <div className="flex flex-col">
+        <div className="flex justify-between">
+          <div>
           <img
             src="/logos/side_full.png"
-            className=""
+            className="ml-3 mt-2"
             alt={""}
             height={logoHeight}
             width={logoHeight * logoAspectRatio}
           />
+          </div>
+          <div>
+            {/* <h1 className="text-red-600 font-dancing text-2xl font-bold" >Hello {user.name}</h1> */}
+          </div>
+          <div>
+             <Container className="mt-2" >
+        <Group position="apart">
+        <Menu
+            width={260}
+            position="bottom-end"
+            transitionProps={{ transition: "pop-top-right" }}
+            onClose={() => setUserMenuOpened(false)}
+            onOpen={() => setUserMenuOpened(true)}
+            withinPortal
+          >
+            <Menu
+            width={260}
+            position="bottom-end"
+            transitionProps={{ transition: "pop-top-right" }}
+            onClose={() => setUserMenuOpened(false)}
+            onOpen={() => setUserMenuOpened(true)}
+            withinPortal
+          >
+            <Menu.Target>
+              <UnstyledButton>
+                <Bell></Bell>
+              </UnstyledButton>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Label>Nothing to Show</Menu.Label>
+            </Menu.Dropdown>
+          </Menu>
 
-          <Burger
-            opened={opened}
-            onClick={toggle}
-            className={classes.burger}
-            size="sm"
-            color={theme.white}
-          />
+            <Menu.Target>
+              <UnstyledButton>
+                <IconMessage></IconMessage>
+              </UnstyledButton>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Label>Nothing to Show</Menu.Label>
+            </Menu.Dropdown>
+          </Menu>
+          
 
           <Menu
             width={260}
@@ -136,65 +135,27 @@ export function UserHeader({ user, tabs }: HeaderTabsProps) {
             withinPortal
           >
             <Menu.Target>
-              <UnstyledButton
-                className={cx(classes.user, {
-                  [classes.userActive]: userMenuOpened,
-                })}
-              >
+              <UnstyledButton>
                 <Group spacing={7}>
                   <Avatar
                     src={user.image}
                     alt={user.name}
                     radius="xl"
-                    size={20}
+                    size={60}
                   />
-                  <Text
+                  {/* <Text className="text-black"
                     weight={500}
                     size="sm"
                     sx={{ lineHeight: 1, color: theme.white }}
                     mr={3}
                   >
                     {user.name}
-                  </Text>
+                  </Text> */}
                   <IconChevronDown size={rem(12)} stroke={1.5} />
                 </Group>
               </UnstyledButton>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item
-                icon={
-                  <IconHeart
-                    size="0.9rem"
-                    stroke={1.5}
-                    color={theme.colors.red[6]}
-                  />
-                }
-              >
-                Liked posts
-              </Menu.Item>
-              <Menu.Item
-                icon={
-                  <IconStar
-                    size="0.9rem"
-                    stroke={1.5}
-                    color={theme.colors.yellow[6]}
-                  />
-                }
-              >
-                Saved posts
-              </Menu.Item>
-              <Menu.Item
-                icon={
-                  <IconMessage
-                    size="0.9rem"
-                    stroke={1.5}
-                    color={theme.colors.blue[6]}
-                  />
-                }
-              >
-                Your comments
-              </Menu.Item>
-
               <Menu.Label>Settings</Menu.Label>
               <Menu.Item icon={<IconSettings size="0.9rem" stroke={1.5} />}>
                 Account settings
@@ -224,19 +185,76 @@ export function UserHeader({ user, tabs }: HeaderTabsProps) {
           </Menu>
         </Group>
       </Container>
-      <Container>
-        <Tabs
-          defaultValue="Home"
-          variant="outline"
-          classNames={{
-            root: classes.tabs,
-            tabsList: classes.tabsList,
-            tab: classes.tab,
-          }}
-        >
-          <Tabs.List>{items}</Tabs.List>
-        </Tabs>
-      </Container>
+          </div>
+        </div>
+        <div className="md:flex justify-center sm:none">
+          <Tabs
+            defaultValue="courses"
+            variant="outline"
+            // variant="pills"
+            radius="md"
+            classNames={{
+              // root: classes.tabs,
+              // tabsList: classes.tabsList,
+              tab: classes.tab,
+            }}
+          >
+            <Tabs.List>
+              <Tabs.Tab value="courses" key="Courses">
+                <div className="flex">
+                  <Files
+                    className="mt-[-4px]"
+                    size={25}
+                    strokeWidth={2}
+                  ></Files>
+                  Courses
+                </div>
+              </Tabs.Tab>
+              <Tabs.Tab value="newCourse" key="Courses">
+                <div className="flex">
+                  <FilePlus
+                    className="mt-[-4px]"
+                    size={25}
+                    strokeWidth={2}
+                  ></FilePlus>
+                  New Course
+                </div>
+              </Tabs.Tab>
+              <Tabs.Tab value="todo" key="Courses">
+                <div className="flex">
+                  <CheckupList
+                    className="mt-[-4px]"
+                    size={25}
+                    strokeWidth={2}
+                  ></CheckupList>
+                  To-Do
+                </div>
+              </Tabs.Tab>
+              <Tabs.Tab value="calender" key="Courses">
+                <div className="flex">
+                  <CalendarEvent
+                    className="mt-[-4px]"
+                    size={25}
+                    strokeWidth={2}
+                  ></CalendarEvent>
+                  Calender
+                </div>
+              </Tabs.Tab>
+              <Tabs.Tab value="colabSketch" key="Courses">
+                <div className="flex">
+                  <Chalkboard
+                    className="mt-[-4px]"
+                    size={25}
+                    strokeWidth={2}
+                  ></Chalkboard>
+                  ColabSketch
+                </div>
+              </Tabs.Tab>
+            </Tabs.List>
+          </Tabs>
+        </div>
+      </div>
+      {/* </Container> */}
     </header>
   );
 }
